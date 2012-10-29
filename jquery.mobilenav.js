@@ -3,20 +3,34 @@
   var pluginName = 'mobileNav',
       document = window.document,
       defaults = {
-        breakpoint: 400,
-        openText: "open menu",
-        closeText: "close menu",
-        triggerClass: "mobileNavTrigger",
-        pluginActiveClass: "mobileNavActive",
-        isOpenClass: "mobileNavOpen",
-        afterOpen: undefined,
-        afterClose: undefined,
-        afterConstruct: undefined,
-        afterDestruct: undefined,
-        showLabel: false,
-        labelClass: "mobileNavLabel",
-        activeItemSelector: "ul > li.active > a",
-        noActiveItemText: "Menu"
+        // css classes
+        css: {
+          triggerClass: "mobileNavTrigger",
+          pluginActiveClass: "mobileNavActive",
+          isOpenClass: "mobileNavOpen",
+          labelClass: "mobileNavLabel",
+        },
+
+        // text settings
+        text: {
+          openText: "Open menu",
+          closeText: "Close menu",
+          noActiveItemText: "Menu"
+        },
+
+        // available callbacks
+        callbacks: {
+          afterOpen: undefined, 
+          afterClose: undefined,
+          afterConstruct: undefined,
+          afterDestruct: undefined,
+        }
+        
+
+        breakpoint: 400, // $(window).width() value
+        showLabel: false, // show a label with the active menu item
+        activeItemSelector: "ul > li.active > a", // selector to get the active menu item
+        
       };
 
   function Plugin( element, options ) {
@@ -33,17 +47,20 @@
 
     var _self = this, eventType;
 
-    _self.$trigger = $('<a href="#">' + _self.options.openText + '</a>');
-    _self.$trigger.addClass(_self.options.triggerClass);
-    _self.$label = $('<span class="' +  _self.labelClass + '"/>');
+    _self.$trigger = $('<a href="#">' + _self.options.text.openText + '</a>');
+    _self.$trigger.addClass(_self.options.css.triggerClass);
+    _self.$label = $('<span class="' +  _self.css.labelClass + '"/>');
     
+    // enable touch support when available
     eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
 
+    // start observing the window with
     $(window).resize(function () {
       _self.observe();
     });
     
-    _self.element.on(eventType, '.' + _self.options.triggerClass, function(e) {
+    // add open/close eventhandler
+    _self.element.on(eventType, '.' + _self.options.css.triggerClass, function(e) {
       
       e.preventDefault();
       _self.toggle();
@@ -51,26 +68,27 @@
     });
   };
 
+
   Plugin.prototype.toggle = function () {
 
     var _self = this;
 
-    if(_self.element.hasClass(_self.options.openClass)) {
+    if(_self.element.hasClass(_self.options.css.openClass)) {
 
-      _self.element.removeClass(_self.options.openClass);
-      _self.$trigger.text(_self.options.openText);
-      _self.executeCallback(_self.options.afterClose);
+      _self.element.removeClass(_self.options.css.openClass);
+      _self.$trigger.text(_self.options.text.openText);
+      _self.executeCallback(_self.options.callbacks.afterClose);
 
       if(_self.options.showLabel) {
         _self.element.append(_self.$label);
-        _self.$label = _self.element.find('.' + _self.options.labelClass);
+        _self.$label = _self.element.find('.' + _self.options.css.labelClass);
       }
 
     }else{
-      _self.element.addClass(_self.options.openClass);
-      _self.$trigger.text(_self.options.closeText);
+      _self.element.addClass(_self.options.css.openClass);
+      _self.$trigger.text(_self.options.text.closeText);
       _self.$label.remove();
-      _self.executeCallback(_self.options.afterOpen);
+      _self.executeCallback(_self.options.callbacks.afterOpen);
 
     }
 
@@ -92,21 +110,21 @@
     var _self = this, $activeItem, labelText;
 
     _self.element.append(_self.$trigger);
-    _self.element.addClass(_self.options.activeClass);
-    _self.$trigger = _self.element.find('.' + _self.options.triggerClass);
+    _self.element.addClass(_self.options.css.activeClass);
+    _self.$trigger = _self.element.find('.' + _self.options.css.triggerClass);
 
     $activeItem = _self.element.find(_self.options.activeItemSelector);
 
     if($activeItem.length) {
       labelText = $activeItem.text();
     }else {
-      labelText = _self.options.noActiveItemText;
+      labelText = _self.options.text.noActiveItemText;
       _self.$label.addClass('empty');
     }
     
     _self.$label.text(labelText);
     
-    _self.executeCallback(_self.options.afterConstruct());
+    _self.executeCallback(_self.options.callbacks.afterConstruct());
 
   }
 
@@ -114,10 +132,10 @@
 
     var _self = this;
 
-    _self.element.removeClass(_self.options.activeClass);
+    _self.element.removeClass(_self.options.css.pluginActiveClass);
     _self.$trigger.remove();
 
-    _self.executeCallback(_self.options.afterDestruct());
+    _self.executeCallback(_self.options.callbacks.afterDestruct());
   
   }
 
