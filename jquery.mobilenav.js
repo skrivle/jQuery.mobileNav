@@ -54,11 +54,12 @@
     // enable touch support when available
     eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
 
-    // start observing the window with
+    // start observing the window width
     $(window).resize(function () {
-
       _self.observe();
     });
+    _self.observe();
+
     
     // add open/close eventhandler
     _self.element.on(eventType, '.' + _self.options.css.triggerClass, function(e) {
@@ -74,9 +75,9 @@
 
     var _self = this;
 
-    if(_self.element.hasClass(_self.options.css.openClass)) {
+    if(_self.element.hasClass(_self.options.css.isOpenClass)) {
 
-      _self.element.removeClass(_self.options.css.openClass);
+      _self.element.removeClass(_self.options.css.isOpenClass);
       _self.$trigger.text(_self.options.text.openText);
       _self.executeCallback(_self.options.callbacks.afterClose);
 
@@ -86,7 +87,7 @@
       }
 
     }else{
-      _self.element.addClass(_self.options.css.openClass);
+      _self.element.addClass(_self.options.css.isOpenClass);
       _self.$trigger.text(_self.options.text.closeText);
       _self.$label.remove();
       _self.executeCallback(_self.options.callbacks.afterOpen);
@@ -99,12 +100,8 @@
     
     var _self = this;
 
-
-
     if($(window).width() < _self.options.breakpoint) {
-      console.log('ok');
       _self.construct();  
-
     }else {
       _self.destruct();
     }
@@ -117,7 +114,7 @@
     var _self = this, $activeItem, labelText;
 
     _self.element.append(_self.$trigger);
-    _self.element.addClass(_self.options.css.activeClass);
+    _self.element.addClass(_self.options.css.pluginActiveClass);
     _self.$trigger = _self.element.find('.' + _self.options.css.triggerClass);
 
     $activeItem = _self.element.find(_self.options.activeItemSelector);
