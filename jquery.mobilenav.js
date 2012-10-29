@@ -35,7 +35,7 @@
 
   function Plugin( element, options ) {
 
-    var _self = this, nogeenvar;
+    var _self = this;
 
     _self.element = $(element);
     _self.options = $.extend( {}, defaults, options) ;
