@@ -24,7 +24,7 @@
           afterClose: undefined,
           afterConstruct: undefined,
           afterDestruct: undefined,
-        }
+        },
         
 
         breakpoint: 400, // $(window).width() value
@@ -49,13 +49,14 @@
 
     _self.$trigger = $('<a href="#">' + _self.options.text.openText + '</a>');
     _self.$trigger.addClass(_self.options.css.triggerClass);
-    _self.$label = $('<span class="' +  _self.css.labelClass + '"/>');
+    _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
     // enable touch support when available
     eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
 
     // start observing the window with
     $(window).resize(function () {
+
       _self.observe();
     });
     
@@ -98,14 +99,20 @@
     
     var _self = this;
 
+
+
     if($(window).width() < _self.options.breakpoint) {
-      _self.construct();   
+      console.log('ok');
+      _self.construct();  
+
     }else {
       _self.destruct();
     }
   }
 
   Plugin.prototype.construct = function () {
+
+
 
     var _self = this, $activeItem, labelText;
 
@@ -124,7 +131,7 @@
     
     _self.$label.text(labelText);
     
-    _self.executeCallback(_self.options.callbacks.afterConstruct());
+    _self.executeCallback(_self.options.callbacks.afterConstruct);
 
   }
 
@@ -135,7 +142,7 @@
     _self.element.removeClass(_self.options.css.pluginActiveClass);
     _self.$trigger.remove();
 
-    _self.executeCallback(_self.options.callbacks.afterDestruct());
+    _self.executeCallback(_self.options.callbacks.afterDestruct);
   
   }
 
