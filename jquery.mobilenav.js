@@ -25,7 +25,6 @@
           afterConstruct: undefined,
           afterDestruct: undefined,
         },
-        
 
         breakpoint: 400, // $(window).width() value
         showLabel: false, // show a label with the active menu item
@@ -60,7 +59,6 @@
     });
     _self.observe();
 
-    
     // add open/close eventhandler
     _self.element.on(eventType, '.' + _self.options.css.triggerClass, function(e) {
       
@@ -69,7 +67,6 @@
 
     });
   };
-
 
   Plugin.prototype.toggle = function () {
 
@@ -93,7 +90,6 @@
       _self.executeCallback(_self.options.callbacks.afterOpen);
 
     }
-
   }
 
   Plugin.prototype.observe = function () {
@@ -108,8 +104,6 @@
   }
 
   Plugin.prototype.construct = function () {
-
-
 
     var _self = this, $activeItem, labelText;
 
