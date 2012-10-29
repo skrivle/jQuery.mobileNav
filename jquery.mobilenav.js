@@ -144,12 +144,11 @@
   };
 
   $.fn[pluginName] = function ( options ) {
+    
+    return this.each(function () {
 
-    var _self = this;
-
-    return _self.each(function () {
-      if (!$.data(_self, 'plugin_' + pluginName)) {
-        $.data(_self, 'plugin_' + pluginName, new Plugin( _self, options ));
+      if (!$.data(this, 'plugin_' + pluginName)) {
+        $.data(this, 'plugin_' + pluginName, new Plugin(this, options ));
       }
     });
   }
