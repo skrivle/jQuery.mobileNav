@@ -59,5 +59,5 @@ $(function () {
 
 ###methods###
 ```javascript
-$('#primaryNav').mobileNav('updateLabel');
+$('#primaryNav').mobileNav('updateLabel'); // updates the label. Can be useful when using ajax ...
 ```
