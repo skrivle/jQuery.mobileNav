@@ -39,9 +39,7 @@
     _self.$element = $(element);
     _self.options = $.extend( {}, defaults, options) ;
     _self.init();
-
-
-  
+    
   }
 
   Plugin.prototype.init = function () {
