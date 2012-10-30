@@ -25,7 +25,7 @@
 				<ul>
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Work</a></li>
-					<li><a href="#">Services</a></li>
+					<li class="active"><a href="#">Services</a></li>
 					<li><a href="#">Contact</a></li>
 				</ul>
 			</nav>
@@ -55,9 +55,16 @@
 	<script>
 		$(function () {
 
-			$('#header').find('.primary-nav').mobileNav({
+			var $nav = $('#header').find('.primary-nav');
+
+			$nav.mobileNav({
 				showLabel: true	
 			});
+
+
+			$nav.mobileNav('updateLabel');
+
+
 
 		});
 	</script>
