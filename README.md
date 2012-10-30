@@ -1,7 +1,10 @@
 jQuery.mobileNav
 ================
 
-#html#
+###jQuery.mobileNav?###
+You can use this plugin to create an easy to use mobile navigation for your responsive website. 
+
+###html###
 
 ```html
 <nav id="primaryNav">
@@ -13,10 +16,48 @@ jQuery.mobileNav
   </ul>
 </nav>
 ````
-#javascript#
+###javascript###
 
 ```javascript
 $(function () {
   $('#primaryNav').mobileNav();  
 });
+```
+
+###options###
+
+```javascript
+{
+  // css classes
+  css: {
+    triggerClass: "mobileNavTrigger",
+    pluginActiveClass: "mobileNavActive",
+    isOpenClass: "mobileNavOpen",
+    labelClass: "mobileNavLabel",
+  },
+
+  // text settings
+  text: {
+    openText: "Open menu",
+    closeText: "Close menu",
+    noActiveItemText: "Menu"
+  },
+
+  // available callbacks
+  callbacks: {
+    afterOpen: undefined, 
+    afterClose: undefined,
+    afterConstruct: undefined,
+    afterDestruct: undefined,
+  },
+
+  breakpoint: 500, // $(window).width() value
+  showLabel: false, // show a label with the active menu item
+  activeItemSelector: "ul > li.active > a" // selector to get the active menu item
+}
+```
+
+###methods###
+```javascript
+$('#primaryNav').mobileNav('updateLabel');
 ```
