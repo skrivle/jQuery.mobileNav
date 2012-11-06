@@ -73,14 +73,17 @@
   };
 
   Plugin.prototype.isOpen = function () {
-    return _self.$element.hasClass(_self.options.css.isOpenClass)
+    return _self.$element.hasClass(_self.options.css.isOpenClass);
   }
 
   Plugin.prototype.close = function () {
     var _self = this;
 
+    // close menu
     _self.$element.removeClass(_self.options.css.isOpenClass);
     _self.$trigger.text(_self.options.text.openText);
+
+    // after close callback
     _self.executeCallback(_self.options.callbacks.afterClose);
 
   }
