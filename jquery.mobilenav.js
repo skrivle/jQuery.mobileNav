@@ -1,4 +1,4 @@
-;(function ( $, window, undefined ) {
+(function ( $, window, undefined ) {
 
   var pluginName = 'mobileNav',
       document = window.document,
@@ -39,19 +39,18 @@
     _self.$element = $(element);
     _self.options = $.extend( {}, defaults, options) ;
     _self.init();
-    
   }
 
   Plugin.prototype.init = function () {
 
-    var _self = this, eventType;
+    var _self = this, _eventType;
 
     _self.$trigger = $('<a href="#">' + _self.options.text.openText + '</a>');
     _self.$trigger.addClass(_self.options.css.triggerClass);
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
-    // enable touch support when available
-    eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
+    // check for modernizr, if it's available, let it check for touch support
+    _eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
 
     // start observing the window width
     $(window).resize(function () {
@@ -60,31 +59,42 @@
     _self.observe();
 
     // add open/close eventhandler
-    _self.$element.on(eventType, '.' + _self.options.css.triggerClass, function(e) {
+    _self.$element.on(_eventType, '.' + _self.options.css.triggerClass, function(e) {
       
       e.preventDefault();
-      _self.toggle();
+      
+      if(_self.isOpen()) {
+        _self.close();
+      }else{
+        _self.open();
+      }
 
     });
   };
 
-  Plugin.prototype.toggle = function () {
+  Plugin.prototype.isOpen = function () {
+    return _self.$element.hasClass(_self.options.css.isOpenClass)
+  }
 
+  Plugin.prototype.close = function () {
     var _self = this;
 
-    if(_self.$element.hasClass(_self.options.css.isOpenClass)) {
+    _self.$element.removeClass(_self.options.css.isOpenClass);
+    _self.$trigger.text(_self.options.text.openText);
+    _self.executeCallback(_self.options.callbacks.afterClose);
 
-      _self.$element.removeClass(_self.options.css.isOpenClass);
-      _self.$trigger.text(_self.options.text.openText);
-      _self.executeCallback(_self.options.callbacks.afterClose);
+  }
 
-    }else{
-      _self.$element.addClass(_self.options.css.isOpenClass);
-      _self.$trigger.text(_self.options.text.closeText);
-      
-      _self.executeCallback(_self.options.callbacks.afterOpen);
+  Plugin.prototype.open = function () {
+    var _self = this;
 
-    }
+    // open menu
+    _self.$element.addClass(_self.options.css.isOpenClass);
+    _self.$trigger.text(_self.options.text.closeText);
+    
+    // after open callback  
+    _self.executeCallback(_self.options.callbacks.afterOpen);
+
   }
 
   Plugin.prototype.observe = function () {
@@ -92,9 +102,7 @@
     var _self = this;
 
     if($(window).width() < _self.options.breakpoint) {
-
       _self.construct();  
-
     }else {
       _self.destruct();
     }
@@ -165,18 +173,19 @@
           switch(options) {
 
             case 'updateLabel':
-
               $.data(this, 'plugin_' + pluginName).updateLabel();
-
               break;
-
+            case: 'open':
+              $.data(this, 'plugin_' + pluginName).open();
+              break;
+            case: 'close':
+              $.data(this, 'plugin_' + pluginName).close();
+              break;
           }
-
         }
-
       }
     });
   }
 
-}(jQuery, window));
+})(jQuery, window);
 
