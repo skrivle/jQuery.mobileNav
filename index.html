@@ -21,7 +21,7 @@
 		<header role="banner" id="header">
 		
 			<!-- primary nav -->
-			<nav class="primary-nav">
+			<nav id="primaryNav">
 				<ul>
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Work</a></li>
@@ -55,16 +55,7 @@
 	<script>
 		$(function () {
 
-			var $nav = $('#header').find('.primary-nav');
-
-			$nav.mobileNav({
-				showLabel: true
-			});
-
-
-
-
-
+			$('#primaryNav').mobileNav();
 
 		});
 	</script>
