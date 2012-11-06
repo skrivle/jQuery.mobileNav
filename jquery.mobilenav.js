@@ -175,10 +175,10 @@
             case 'updateLabel':
               $.data(this, 'plugin_' + pluginName).updateLabel();
               break;
-            case: 'open':
+            case 'open':
               $.data(this, 'plugin_' + pluginName).open();
               break;
-            case: 'close':
+            case 'close':
               $.data(this, 'plugin_' + pluginName).close();
               break;
           }
