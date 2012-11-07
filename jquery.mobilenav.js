@@ -73,6 +73,7 @@
   };
 
   Plugin.prototype.isOpen = function () {
+    _self = this;
     return _self.$element.hasClass(_self.options.css.isOpenClass);
   }
 
