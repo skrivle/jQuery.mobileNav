@@ -60,4 +60,8 @@ $(function () {
 ###methods###
 ```javascript
 $('#primaryNav').mobileNav('updateLabel'); // updates the label. Can be useful when using ajax ...
+
+$('#primaryNav').mobileNav('open'); // open menu
+
+$('#primaryNav').mobileNav('close'); // close menu
 ```
