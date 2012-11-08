@@ -5,3 +5,13 @@
 .mobileNavActive.mobileNavOpen ul {
 	display: block;
 }
+
+.mobileNavTrigger {
+	
+	text-decoration: none;
+	display: inline-block;
+	background-color: #000;
+	color: #fff;
+	padding: 10px;
+
+}

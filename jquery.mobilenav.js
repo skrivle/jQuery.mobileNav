@@ -45,12 +45,13 @@
 
     var _self = this, _eventType;
 
-    _self.$trigger = $('<a href="#">' + _self.options.text.openText + '</a>');
-    _self.$trigger.addClass(_self.options.css.triggerClass);
+    _self.$trigger = $('<a href="javascript:void()" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</a>');
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
     // check for modernizr, if it's available, let it check for touch support
     _eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
+
+    console.log(_eventType);
 
     // start observing the window width
     $(window).resize(function () {
