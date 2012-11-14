@@ -8,7 +8,7 @@
           triggerClass: "mobileNavTrigger",
           pluginActiveClass: "mobileNavActive",
           isOpenClass: "mobileNavOpen",
-          labelClass: "mobileNavLabel",
+          labelClass: "mobileNavLabel"
         },
 
         // text settings
@@ -23,12 +23,12 @@
           afterOpen: undefined, 
           afterClose: undefined,
           afterConstruct: undefined,
-          afterDestruct: undefined,
+          afterDestruct: undefined
         },
 
         breakpoint: 500, // $(window).width() value
         showLabel: false, // show a label with the active menu item
-        activeItemSelector: "ul > li.active > a", // selector to get the active menu item
+        activeItemSelector: "ul > li.active > a" // selector to get the active menu item
         
       };
 
@@ -51,8 +51,6 @@
     // check for modernizr, if it's available, let it check for touch support
     _eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
 
-    console.log(_eventType);
-
     // start observing the window width
     $(window).resize(function () {
       _self.observe();
@@ -74,9 +72,9 @@
   };
 
   Plugin.prototype.isOpen = function () {
-    _self = this;
+    var _self = this;
     return _self.$element.hasClass(_self.options.css.isOpenClass);
-  }
+  };
 
   Plugin.prototype.close = function () {
     var _self = this;
@@ -88,7 +86,7 @@
     // after close callback
     _self.executeCallback(_self.options.callbacks.afterClose);
 
-  }
+  };
 
   Plugin.prototype.open = function () {
     var _self = this;
@@ -100,7 +98,7 @@
     // after open callback  
     _self.executeCallback(_self.options.callbacks.afterOpen);
 
-  }
+  };
 
   Plugin.prototype.observe = function () {
     
@@ -111,7 +109,7 @@
     }else {
       _self.destruct();
     }
-  }
+  };
 
   Plugin.prototype.construct = function () {
 
@@ -130,7 +128,7 @@
 
     _self.executeCallback(_self.options.callbacks.afterConstruct);
 
-  }
+  };
 
   Plugin.prototype.updateLabel = function () {
 
@@ -146,7 +144,7 @@
     
     _self.$label.text(labelText);
 
-  }
+  };
 
   Plugin.prototype.destruct = function () {
 
@@ -157,7 +155,7 @@
     _self.$label.remove();
     _self.executeCallback(_self.options.callbacks.afterDestruct);
   
-  }
+  };
 
   Plugin.prototype.executeCallback = function (callback) {
     if(typeof callback === 'function') {
@@ -190,7 +188,6 @@
         }
       }
     });
-  }
+  };
 
 })(jQuery, window);
-
