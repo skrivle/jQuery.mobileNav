@@ -8,7 +8,8 @@
           triggerClass: "mobileNavTrigger",
           pluginActiveClass: "mobileNavActive",
           isOpenClass: "mobileNavOpen",
-          labelClass: "mobileNavLabel"
+          labelClass: "mobileNavLabel",
+          wrapperClass: 'mobileNavWrapper'
         },
 
         // text settings
@@ -45,6 +46,7 @@
 
     var _self = this, _eventType;
 
+    _self.$wrapper = $('<div class="' + _self.options.css.wrapperClass + '"/>')
     _self.$trigger = $('<a href="javascript:void()" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</a>');
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
@@ -115,14 +117,19 @@
 
     var _self = this; 
 
-    _self.$element.prepend(_self.$trigger);
-    _self.$element.addClass(_self.options.css.pluginActiveClass);
-    _self.$trigger = _self.$element.find('.' + _self.options.css.triggerClass);
-
+    _self.$wrapper.append(_self.$trigger);
+    
     if(_self.options.showLabel) {
-      _self.$element.append(_self.$label);
-      _self.$label = _self.$element.find('.' + _self.options.css.labelClass);
+      _self.$wrapper.append(_self.$label);
     }
+
+    _self.$element.prepend(_self.$wrapper);
+
+    _self.$element.addClass(_self.options.css.pluginActiveClass);
+
+    _self.$trigger = _self.$element.find('.' + _self.options.css.triggerClass);
+    _self.$label = _self.$element.find('.' + _self.options.css.labelClass);
+
     
     _self.updateLabel();
 
@@ -151,8 +158,7 @@
     var _self = this;
 
     _self.$element.removeClass(_self.options.css.pluginActiveClass);
-    _self.$trigger.remove();
-    _self.$label.remove();
+    _self.$wrapper.remove();
     _self.executeCallback(_self.options.callbacks.afterDestruct);
   
   };
