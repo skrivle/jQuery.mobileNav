@@ -1,7 +1,8 @@
 (function ( $, window, undefined ) {
 
+  "use strict";
+
   var pluginName = 'mobileNav',
-      document = window.document,
       defaults = {
         // css classes
         css: {
@@ -46,7 +47,7 @@
 
     var _self = this, _eventType;
 
-    _self.$wrapper = $('<div class="' + _self.options.css.wrapperClass + '"/>')
+    _self.$wrapper = $('<div class="' + _self.options.css.wrapperClass + '"/>');
     _self.$trigger = $('<a href="javascript:void()" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</a>');
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
