@@ -22,7 +22,7 @@
 
         // available callbacks
         callbacks: {
-          afterOpen: undefined, 
+          afterOpen: undefined,
           afterClose: undefined,
           afterConstruct: undefined,
           afterDestruct: undefined
@@ -48,7 +48,7 @@
     var _self = this, _eventType;
 
     _self.$wrapper = $('<div class="' + _self.options.css.wrapperClass + '"/>');
-    _self.$trigger = $('<a href="javascript:void()" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</a>');
+    _self.$trigger = $('<span aria-role="button" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</span>');
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
     // check for modernizr, if it's available, let it check for touch support
