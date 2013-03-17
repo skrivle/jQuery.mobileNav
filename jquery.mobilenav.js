@@ -107,9 +107,11 @@
     
     var _self = this;
 
-    if($(window).width() < _self.options.breakpoint) {
+    if($(window).width() < _self.options.breakpoint && !_self.$element.hasClass(_self.options.css.pluginActiveClass)) {
       _self.construct();  
-    }else {
+    }
+
+    if ($(window).width() > _self.options.breakpoint && _self.$element.hasClass(_self.options.css.pluginActiveClass)) {
       _self.destruct();
     }
   };
@@ -131,7 +133,6 @@
     _self.$trigger = _self.$element.find('.' + _self.options.css.triggerClass);
     _self.$label = _self.$element.find('.' + _self.options.css.labelClass);
 
-    
     _self.updateLabel();
 
     _self.executeCallback(_self.options.callbacks.afterConstruct);
