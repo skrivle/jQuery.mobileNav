@@ -2,7 +2,7 @@ jQuery.mobileNav
 ================
 
 ###jQuery.mobileNav?###
-You can use this plugin to create an easy to use mobile navigation for your responsive website. 
+Create an easy to use, responsive navigation for your website. 
 
 ###html###
 
