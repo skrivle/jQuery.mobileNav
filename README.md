@@ -1,7 +1,7 @@
 jQuery.mobileNav
 ================
 
-[![Build Status](https://api.travis-ci.org/vejersele/jQuery.mobileNav.png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+[![Build Status](https://api.travis-ci.org/vejersele/jQuery.mobileNav.png)]
 
 ###jQuery.mobileNav?###
 Create an easy to use, responsive navigation for your website. 
