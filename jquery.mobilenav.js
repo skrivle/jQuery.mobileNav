@@ -31,6 +31,7 @@
         breakpoint: 500, // $(window).width() value
         showLabel: false, // show a label with the active menu item
         activeItemSelector: "ul > li.active > a" // selector to get the active menu item
+        triggerEvent: 'click'
         
       };
 
@@ -52,9 +53,6 @@
     _self.$trigger = $('<span aria-role="button" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</span>');
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
-    // check for modernizr, if it's available, let it check for touch support
-    _eventType = (window.Modernizr && window.Modernizr.touch) ? "touchend" : "click";
-
     // start observing the window width
     _self.$win.resize(function () {
       _self.observe();
@@ -62,7 +60,7 @@
     _self.observe();
 
     // add open/close eventhandler
-    _self.$element.on(_eventType, '.' + _self.options.css.triggerClass, function(e) {
+    _self.$element.on(_self.settings.triggerEvent, '.' + _self.options.css.triggerClass, function(e) {
       
       e.preventDefault();
       
