@@ -1,0 +1,24 @@
+{
+  "name": "jQuery.mobileNav",
+  "main": "jQuery.mobileNav.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/vejersele/jQuery.mobileNav",
+  "authors": [
+    "Jelle Versele <jelle@versele.be>"
+  ],
+  "keywords": [
+    "jQuery"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "qunit": "~1.12.0"
+  }
+}

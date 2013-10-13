@@ -16,12 +16,29 @@ module.exports = function(grunt) {
 					'jquery.mobilenav.min.js': ['jquery.mobilenav.js']
 				}
 			}
+		},
+		connect: {
+			server: {
+				options: {
+					port: 8000,
+					base: '.'
+				}
+			}
+		},
+		qunit: {
+			all: {
+				options: {
+					urls: ['http://localhost:8000/test/test.html']
+				}
+			}
 		}		
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-qunit');
 
-	grunt.registerTask('default', ['jshint','uglify']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'connect', 'qunit']);
 
 };
