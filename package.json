@@ -1,0 +1,12 @@
+{
+  "name": "jQuery.mobileNav",
+  "version": "1.0.0",
+  "title": "JQuery Mobile Nav",
+  "homepage": "http://github.com/vejersele",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-uglify": "~0.2.4"
+  },
+  "author": "Jelle Versele"
+}

@@ -16,3 +16,7 @@ xcuserdata
 # svn & cvs
 .svn
 CVS
+
+# npm
+*.log
+node_modules/
