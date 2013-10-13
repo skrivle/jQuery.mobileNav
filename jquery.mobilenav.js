@@ -60,7 +60,7 @@
 		_self.observe();
 
 		// add open/close eventhandler
-		_self.$element.on(_self.settings.triggerEvent, '.' + _self.options.css.triggerClass, function(e) {
+		_self.$element.on(_self.options.triggerEvent, '.' + _self.options.css.triggerClass, function(e) {
 			
 			e.preventDefault();
 			
