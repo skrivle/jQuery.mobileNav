@@ -39,6 +39,7 @@
     var _self = this;
 
     _self.$element = $(element);
+    _self.$win = $(window);
     _self.options = $.extend( {}, defaults, options) ;
     _self.init();
   }
@@ -52,10 +53,10 @@
     _self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
     
     // check for modernizr, if it's available, let it check for touch support
-    _eventType = (window.Modernizr && window.Modernizr.touch) ? "touchstart" : "click";
+    _eventType = (window.Modernizr && window.Modernizr.touch) ? "touchend" : "click";
 
     // start observing the window width
-    $(window).resize(function () {
+    _self.$win.resize(function () {
       _self.observe();
     });
     _self.observe();
@@ -112,11 +113,11 @@
     
     var _self = this;
 
-    if (!_self.isActive() && $(window).width() < _self.options.breakpoint) {
+    if (!_self.isActive() && _self.$win.width() < _self.options.breakpoint) {
       _self.construct();  
     }
 
-    if (_self.isActive() && $(window).width() > _self.options.breakpoint) {
+    if (_self.isActive() && _self.$win.width() > _self.options.breakpoint) {
       _self.destruct();
     }
   };
