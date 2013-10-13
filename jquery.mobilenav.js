@@ -103,15 +103,20 @@
 
   };
 
+  Plugin.prototype.isActive = function () {
+  	var _self = this;
+  	return _self.$element.hasClass(_self.options.css.pluginActiveClass);
+  };
+
   Plugin.prototype.observe = function () {
     
     var _self = this;
 
-    if($(window).width() < _self.options.breakpoint && !_self.$element.hasClass(_self.options.css.pluginActiveClass)) {
+    if (!_self.isActive() && $(window).width() < _self.options.breakpoint) {
       _self.construct();  
     }
 
-    if ($(window).width() > _self.options.breakpoint && _self.$element.hasClass(_self.options.css.pluginActiveClass)) {
+    if (_self.isActive() && $(window).width() > _self.options.breakpoint) {
       _self.destruct();
     }
   };
