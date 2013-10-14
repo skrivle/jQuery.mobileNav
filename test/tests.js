@@ -31,7 +31,7 @@ test("destruct test", function () {
 	nav.construct();
 	getElements();
 	ok($wrapper.length === 1 && $trigger.length === 1, 'construct working');
-	
+
 });
 
 test( "open test", function() {
@@ -64,6 +64,7 @@ test("label test", function () {
 	var activeItemSel = options.activeItemSelector,
 		txt = $nav.find(activeItemSel).text(),
 		$label = $nav.find('.' + options.css.labelClass);
+		
 	ok(txt === $label.text(), 'label is correct');
 
 	$nav.find('li').removeAttr('class');

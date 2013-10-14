@@ -49,10 +49,6 @@
 
 		var _self = this, _eventType;
 
-		if(_self.isActive()) {
-			return;
-		}
-
 		_self.$wrapper = $('<div class="' + _self.options.css.wrapperClass + '"/>');
 		_self.$trigger = $('<span aria-role="button" class="' + _self.options.css.triggerClass + '">' + _self.options.text.openText + '</span>');
 		_self.$label = $('<span class="' +  _self.options.css.labelClass + '"/>');
@@ -127,6 +123,10 @@
 	Plugin.prototype.construct = function () {
 
 		var _self = this; 
+
+		if(_self.isActive()) {
+			return;
+		}
 
 		_self.$wrapper.append(_self.$trigger);
 		
