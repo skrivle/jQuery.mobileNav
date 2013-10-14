@@ -124,6 +124,10 @@
 
 		var _self = this; 
 
+		if(_self.isActive()) {
+			return;
+		}
+
 		_self.$wrapper.append(_self.$trigger);
 		
 		if(_self.options.showLabel) {
