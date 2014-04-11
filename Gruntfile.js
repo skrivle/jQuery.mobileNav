@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+
+	var serverPort = 8003;
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
@@ -20,7 +23,7 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
-					port: 8000,
+					port: serverPort,
 					base: '.'
 				}
 			}
@@ -28,7 +31,7 @@ module.exports = function(grunt) {
 		qunit: {
 			all: {
 				options: {
-					urls: ['http://localhost:8000/test/test.html']
+					urls: ['http://localhost:'+ serverPort +'/test/test.html']
 				}
 			}
 		}		
